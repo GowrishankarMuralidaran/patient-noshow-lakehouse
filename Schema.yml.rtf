@@ -1,0 +1,51 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red89\green167\blue255;\red17\green17\blue16;\red167\green160\blue158;
+\red244\green244\blue244;\red252\green105\blue144;\red252\green117\blue59;}
+{\*\expandedcolortbl;;\cssrgb\c41569\c72157\c100000;\cssrgb\c8627\c8235\c7843;\cssrgb\c71373\c69020\c68235;
+\cssrgb\c96471\c96471\c96471;\cssrgb\c100000\c50980\c63137;\cssrgb\c100000\c54118\c29412;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 version\cf4 \strokec4 :\cf5 \strokec5  \cf6 \strokec6 2\cf5 \cb1 \strokec5 \
+\
+\cf2 \cb3 \strokec2 models\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3   \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 stg_patient_appointments\cf5 \cb1 \strokec5 \
+\cb3     \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Cleaned and prepared appointment data at the individual booking level."\cf5 \cb1 \strokec5 \
+\cb3     \cf2 \strokec2 columns\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 appointment_id\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Primary key for appointments."\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 tests\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3           \cf4 \strokec4 -\cf5 \strokec5  \cf7 \strokec7 unique\cf5 \cb1 \strokec5 \
+\cb3           \cf4 \strokec4 -\cf5 \strokec5  \cf7 \strokec7 not_null\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 is_noshow\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Target binary metric: 1 if patient missed the appointment, 0 if attended."\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 tests\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3           \cf4 \strokec4 -\cf5 \strokec5  \cf7 \strokec7 not_null\cf5 \cb1 \strokec5 \
+\
+\cb3   \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 fct_neighbourhood_performance\cf5 \cb1 \strokec5 \
+\cb3     \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Gold layer aggregated performance metrics per neighborhood to analyze clinic efficiency and attendance rates."\cf5 \cb1 \strokec5 \
+\cb3     \cf2 \strokec2 config\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3       \cf2 \strokec2 persist_docs\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 relation\cf4 \strokec4 :\cf5 \strokec5  \cf6 \strokec6 true\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 columns\cf4 \strokec4 :\cf5 \strokec5  \cf6 \strokec6 true\cf5 \cb1 \strokec5 \
+\cb3     \cf2 \strokec2 columns\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 neighbourhood\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Physical location/neighborhood of the medical facility."\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 tests\cf4 \strokec4 :\cf5 \cb1 \strokec5 \
+\cb3           \cf4 \strokec4 -\cf5 \strokec5  \cf7 \strokec7 unique\cf5 \cb1 \strokec5 \
+\cb3           \cf4 \strokec4 -\cf5 \strokec5  \cf7 \strokec7 not_null\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 total_appointments\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Total volume of scheduled appointments for this location."\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 total_noshows\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Total count of missed appointments."\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 noshow_rate_pct\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Percentage of scheduled appointments resulting in a no-show (0-100%)."\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 avg_waiting_days\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Average days between scheduling date and actual appointment date."\cf5 \cb1 \strokec5 \
+\cb3       \cf4 \strokec4 -\cf5 \strokec5  \cf2 \strokec2 name\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 total_sms_sent\cf5 \cb1 \strokec5 \
+\cb3         \cf2 \strokec2 description\cf4 \strokec4 :\cf5 \strokec5  \cf7 \strokec7 "Total count of SMS text reminders dispatched to patients."\cf5 \cb1 \strokec5 \
+}

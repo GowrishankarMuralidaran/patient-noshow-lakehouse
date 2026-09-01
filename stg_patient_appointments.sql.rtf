@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red134\green205\blue255;\red17\green17\blue16;\red167\green160\blue158;
+\red89\green167\blue255;\red252\green117\blue59;\red244\green244\blue244;\red71\green145\blue5;\red252\green105\blue144;
+}
+{\*\expandedcolortbl;;\cssrgb\c58824\c84314\c100000;\cssrgb\c8627\c8235\c7843;\cssrgb\c71373\c69020\c68235;
+\cssrgb\c41569\c72157\c100000;\cssrgb\c100000\c54118\c29412;\cssrgb\c96471\c96471\c96471;\cssrgb\c33725\c62353\c784;\cssrgb\c100000\c50980\c63137;
+}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{\{ config\cf4 \strokec4 (\cf2 \strokec2 materialized\cf5 \strokec5 =\cf6 \strokec6 'table'\cf4 \strokec4 )\cf2 \strokec2  \}\}\cf7 \cb1 \strokec7 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3 \strokec5 WITH\cf7 \strokec7  raw_data \cf5 \strokec5 AS\cf7 \strokec7  (\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb3     \cf5 \strokec5 SELECT\cf7 \strokec7  \cf5 \strokec5 *\cf7 \strokec7  \cb1 \
+\cb3     \cf5 \strokec5 FROM\cf7 \strokec7  \cf2 \strokec2 \{\{ source\cf4 \strokec4 (\cf6 \strokec6 'databricks_bronze'\cf4 \strokec4 ,\cf2 \strokec2  \cf6 \strokec6 'bronze_patient_appointments'\cf4 \strokec4 )\cf2 \strokec2  \}\}\cf7 \cb1 \strokec7 \
+\cb3 ),\cb1 \
+\
+\cb3 transformed \cf5 \strokec5 AS\cf7 \strokec7  (\cb1 \
+\cb3     \cf5 \strokec5 SELECT\cf7 \cb1 \strokec7 \
+\cb3         CAST(PatientId \cf5 \strokec5 AS\cf7 \strokec7  BIGINT) \cf5 \strokec5 AS\cf7 \strokec7  patient_id,\cb1 \
+\cb3         CAST(AppointmentID \cf5 \strokec5 AS\cf7 \strokec7  INT) \cf5 \strokec5 AS\cf7 \strokec7  appointment_id,\cb1 \
+\cb3         Gender \cf5 \strokec5 AS\cf7 \strokec7  gender,\cb1 \
+\cb3         Age \cf5 \strokec5 AS\cf7 \strokec7  age,\cb1 \
+\cb3         Neighbourhood \cf5 \strokec5 AS\cf7 \strokec7  neighbourhood,\cb1 \
+\cb3         Scholarship \cf5 \strokec5 AS\cf7 \strokec7  has_scholarship,\cb1 \
+\cb3         Hipertension \cf5 \strokec5 AS\cf7 \strokec7  has_hypertension,\cb1 \
+\cb3         Diabetes \cf5 \strokec5 AS\cf7 \strokec7  has_diabetes,\cb1 \
+\cb3         Alcoholism \cf5 \strokec5 AS\cf7 \strokec7  has_alcoholism,\cb1 \
+\cb3         Handcap \cf5 \strokec5 AS\cf7 \strokec7  disability_level,\cb1 \
+\cb3         SMS_received \cf5 \strokec5 AS\cf7 \strokec7  sms_reminder_sent,\cb1 \
+\cb3         ingestion_timestamp,\cb1 \
+\cb3         \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \cb3 \strokec4         \cf8 \strokec8 -- Target encoding\cf7 \cb1 \strokec7 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb3         \cf5 \strokec5 CASE\cf7 \strokec7  \cb1 \
+\cb3             \cf5 \strokec5 WHEN\cf7 \strokec7  \cf6 \strokec6 `No-show`\cf7 \strokec7  \cf5 \strokec5 =\cf7 \strokec7  \cf6 \strokec6 'Yes'\cf7 \strokec7  \cf5 \strokec5 THEN\cf7 \strokec7  \cf9 \strokec9 1\cf7 \strokec7  \cb1 \
+\cb3             \cf5 \strokec5 WHEN\cf7 \strokec7  \cf6 \strokec6 `No-show`\cf7 \strokec7  \cf5 \strokec5 =\cf7 \strokec7  \cf6 \strokec6 'No'\cf7 \strokec7  \cf5 \strokec5 THEN\cf7 \strokec7  \cf9 \strokec9 0\cf7 \strokec7  \cb1 \
+\cb3             \cf5 \strokec5 ELSE\cf7 \strokec7  \cf5 \strokec5 NULL\cf7 \strokec7  \cb1 \
+\cb3         \cf5 \strokec5 END\cf7 \strokec7  \cf5 \strokec5 AS\cf7 \strokec7  is_noshow,\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf4 \cb3 \strokec4         \cf8 \strokec8 -- Timestamp conversions\cf7 \cb1 \strokec7 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb3         CAST(ScheduledDay \cf5 \strokec5 AS\cf7 \strokec7  TIMESTAMP) \cf5 \strokec5 AS\cf7 \strokec7  scheduled_at,\cb1 \
+\cb3         CAST(AppointmentDay \cf5 \strokec5 AS\cf7 \strokec7  TIMESTAMP) \cf5 \strokec5 AS\cf7 \strokec7  appointment_at,\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf4 \cb3 \strokec4         \cf8 \strokec8 -- Derived feature: Waiting days\cf7 \cb1 \strokec7 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb3         DATEDIFF(\cb1 \
+\cb3             CAST(AppointmentDay \cf5 \strokec5 AS\cf7 \strokec7  DATE), \cb1 \
+\cb3             CAST(ScheduledDay \cf5 \strokec5 AS\cf7 \strokec7  DATE)\cb1 \
+\cb3         ) \cf5 \strokec5 AS\cf7 \strokec7  waiting_days\cb1 \
+\
+\cb3     \cf5 \strokec5 FROM\cf7 \strokec7  raw_data\cb1 \
+\cb3 )\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb3 \strokec5 SELECT\cf7 \strokec7  \cf5 \strokec5 *\cf7 \strokec7  \cb1 \
+\cf5 \cb3 \strokec5 FROM\cf7 \strokec7  transformed\cb1 \
+\cf5 \cb3 \strokec5 WHERE\cf7 \strokec7  age \cf5 \strokec5 >=\cf7 \strokec7  \cf9 \strokec9 0\cf7 \strokec7  \cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf7 \cb3   \cf5 \strokec5 AND\cf7 \strokec7  waiting_days \cf5 \strokec5 >=\cf7 \strokec7  \cf9 \strokec9 0\cf7 \cb1 \strokec7 \
+}
