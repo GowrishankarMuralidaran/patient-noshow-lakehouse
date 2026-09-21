@@ -4,7 +4,7 @@ An end-to-end, production-grade Lakehouse solution built on **Databricks**, **De
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 * **Medallion Architecture**: Bronze (Staging) → Silver (Cleaned/Enriched) → Gold (Business Aggregates)
 * **Data Transformation & Quality**: dbt Cloud running automated unit tests on Databricks SQL Warehouse
@@ -14,7 +14,7 @@ An end-to-end, production-grade Lakehouse solution built on **Databricks**, **De
 
 ---
 
-## 🛠️ Tech Stack & Key Components
+## Tech Stack & Key Components
 
 | Domain | Key Tools & Frameworks | Implementation |
 | :--- | :--- | :--- |
@@ -25,7 +25,7 @@ An end-to-end, production-grade Lakehouse solution built on **Databricks**, **De
 
 ---
 
-## 📊 Analytics Engineering & Semantic Layer (dbt)
+## Analytics Engineering & Semantic Layer (dbt)
 
 The pipeline transforms raw booking logs into structured Silver and Gold layers:
 * `stg_patient_appointments`: Standardizes schema types, calculates wait times, and flags binary targets.
@@ -33,7 +33,7 @@ The pipeline transforms raw booking logs into structured Silver and Gold layers:
 
 ---
 
-## 🤖 Predictive Model & MLOps (MLflow)
+## Predictive Model & MLOps (MLflow)
 
 Trained an XGBoost classification model to predict patient appointment attendance (`is_noshow`).
 * **Input Features**: `age`, `has_scholarship`, `has_hypertension`, `has_diabetes`, `has_alcoholism`, `disability_level`, `sms_reminder_sent`, `waiting_days`.
@@ -41,13 +41,13 @@ Trained an XGBoost classification model to predict patient appointment attendanc
 
 ---
 
-## 💬 Natural Language Self-Service (Databricks Genie)
+## Natural Language Self-Service (Databricks Genie)
 
 Configured a **Databricks AI/BI Genie Space** on the Gold layer (`fct_neighbourhood_performance`) to allow non-technical business stakeholders to ask natural language questions (e.g., *"Which neighborhood has the highest no-show rate?"*).
 
 ---
 
-## 🚦 How to Run
+## How to Run
 
 1. **dbt Pipeline**: Execute `dbt build` inside `dbt_project/` to run SQL transformations and schema tests.
 2. **ML Pipeline**: Execute `python ml_ops/01_predictive_noshow_model.py` on Databricks Serverless Compute to log hyperparameters and register the model.
